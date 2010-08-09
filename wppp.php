@@ -363,8 +363,11 @@ class WPPP extends WP_Widget {
 				// I get the excerpt for the post only if necessary, to save CPU time.
 				//$temppost = &get_post( $post['post_id'] );
 				
-				$replace['%post_thumbnail%'] = get_the_post_thumbnail($post['post_id']);
-				
+				if (get_the_post_thumbnail($post['post_id'])) {
+				  $replace['%post_thumbnail%'] = '<div class="post_image">' . get_the_post_thumbnail($post['post_id']) . '</div>';
+				} else {
+				  $replace['%post_thumbnail%'] = '<div class="post_image no_thumb"></div>';
+				}
 				/*
 				$image_url = get_post_meta($post['post_id'], 'thesis_thumb', true);
 				if ($image_url == '') {
