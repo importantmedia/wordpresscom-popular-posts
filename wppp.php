@@ -32,7 +32,7 @@ class WPPP extends WP_Widget {
 													 ,'enable_cache' => '1'
 													 ,'cache_only_when_visitor' => '0'
 													 ,'time_format' => ''
-													 ,'magic_number' => '1'
+													 ,'magic_number' => '2'
 		);
 
 
@@ -265,7 +265,6 @@ class WPPP extends WP_Widget {
 			}
 			$query .= " WHERE p.id IN (" . implode( ',', $id_list ) . ")";
 			$query .= " AND p.post_status != 'draft' AND p.post_status != 'private' AND p.post_status != 'trash'";
-			$query .= " AND p.post_date >= DATE_SUB(NOW(), INTERVAL 30 DAY)";
 
 			// If I want to show only posts or only pages:
 			if ( $instance['show'] != 'both' ) {
